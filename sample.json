@@ -1,0 +1,21 @@
+{
+	"__task_dirs__": [ "{PROJECT_ROOT}/tasks" ],
+
+	"__commands__": {
+		"generate_all": [ "compile_admin_css" ]
+	},
+
+	"__constants__": {
+		"ADMIN_SCSS": [
+			"{PROJECT_ROOT}/static/_css/*.scss",
+			"{PROJECT_ROOT}/comments/static/css/components/*.scss"
+		]
+	},
+
+	"compile_admin_css": [
+		{ "task": "scss", "input": "{ADMIN_SCSS}" },
+		{ "task": "bundle" },
+		{ "task": "minify[live]" },
+		{ "task": "hashify", "output": "{PROJECT_ROOT}/static/css/admin.{}.css", "options": { "input_files": "{INPUT_FILES}" } }
+	]
+}
